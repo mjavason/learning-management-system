@@ -51,33 +51,12 @@ export const MESSAGES = {
     WELCOME_V1:"Welcome to Version 1"
 };
 
-
-export const LINKS = {
-    AUTH_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKTU',
-    EMAIL: 'mailto:admin@crafthire.online',
-    GOOGLE_MEET: 'https://meet.google.com/uoq-khoy-tpu',
-    MAIL_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zCb29Y',
-    MEETING_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXm',
-    PAYMENT_DOCUMENTATION: '',
-    PHONE_CALL: 'tel:+2349999999999',
-    PROJECT_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXn',
-    SMS: 'sms:+2349999999999',
-    TEAM_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXp',
-    USERCLIENT_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXq',
-    USERPROJECT_MANAGER_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXr',
-    USERTALENT_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXv',
-    USER_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXu',
-    API_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXu',
-    WHATSAPP_CALL: 'https://wa.me/2349999999999',
-    WHATSAPP_CHAT: 'https://wa.me/2349999999999',
-    ZOOM: 'https://zoom.us/j/9999999999',
-}
-
 export const DATABASES = {
-    USER: "User",
-    USER_LAND_RECORD: "user_land_record",
-    SITE_INSPECTION: "site_inspection",
-    SITE_INSPECTION_COMPUTED: "site_inspection_computed",
-    APPOINTMENT: "appointment",
-    APPOINTMENT_VISITOR:"appointment_visitor"
-};
+    USER: "user",
+    ASSIGNMENT: "assignment",
+    ASSIGNMENT_SUBMISSION: "assignment_submission",
+    MATERIAL: "material",
+    SUBJECT: "subject",
+    // Add more constants for other models if needed
+  };
+  

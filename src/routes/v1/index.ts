@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import publicRoute from './public';
-import protectedRoute from './protected';
+import studentRoute from './student';
+import teacherRoute from './teacher'
 import adminRoute from './admin';
 import { MESSAGES, STATUS_CODES } from '../../constants';
 
@@ -11,7 +12,8 @@ router.get('/', (req, res) => {
 });
 
 router.use('/', publicRoute);
-router.use('/', protectedRoute);
+router.use('/', studentRoute);
+router.use('/', teacherRoute);
 router.use('/', adminRoute);
 
 export default router;
