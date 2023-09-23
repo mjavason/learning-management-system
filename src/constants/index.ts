@@ -48,8 +48,29 @@ export const MESSAGES = {
     ACCESS_TOKEN_ERROR_RESPONSE: "Access token is invalid. Please log in again",
     TOKEN_REFRESH_RESPONSE: "Success! The access token was refreshed successfully",
     ROUTE_NOT_FOUND: "Sorry, the page you're looking for doesn't exist.",
-    WELCOME_V1:"Welcome to Version 1"
+    WELCOME_V1: "Welcome to Version 1"
 };
+
+export const LINKS = {
+    AUTH_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKTU',
+    EMAIL: 'mailto:admin@crafthire.online',
+    GOOGLE_MEET: 'https://meet.google.com/uoq-khoy-tpu',
+    MAIL_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zCb29Y',
+    MEETING_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXm',
+    PAYMENT_DOCUMENTATION: '',
+    PHONE_CALL: 'tel:+2349999999999',
+    PROJECT_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXn',
+    SMS: 'sms:+2349999999999',
+    TEAM_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXp',
+    USERCLIENT_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXq',
+    USERPROJECT_MANAGER_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXr',
+    USERTALENT_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXv',
+    USER_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXu',
+    API_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKXu',
+    WHATSAPP_CALL: 'https://wa.me/2349999999999',
+    WHATSAPP_CHAT: 'https://wa.me/2349999999999',
+    ZOOM: 'https://zoom.us/j/9999999999',
+}
 
 export const DATABASES = {
     USER: "user",
@@ -57,6 +78,4 @@ export const DATABASES = {
     ASSIGNMENT_SUBMISSION: "assignment_submission",
     MATERIAL: "material",
     SUBJECT: "subject",
-    // Add more constants for other models if needed
-  };
-  
+};
