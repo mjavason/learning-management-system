@@ -24,7 +24,7 @@ export const MESSAGES = {
     SUCCESSFUL: "Successful",
     ASSIGNED: "Resource assignment completed successfully",
     NOT_FOUND: "Sorry, the requested resource was not found",
-    DEFAULT: "We've received your request and are processing it",
+    DEFAULT: "We've received your request and you've received ours",
     ALREADY_EXISTS: "This resource already exists",
     USER_ALREADY_EXISTS: "The user already exists",
     AUTH_DEFAULT: "Authentication is required for this action",
