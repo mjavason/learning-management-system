@@ -3,10 +3,14 @@ import cors from 'cors';
 import { STATUS_CODES, LINKS, MESSAGES } from './constants'
 import rootRoutes from './routes'
 import preMiddleware  from './middleware/pre.middleware';
+import { SuccessMsgResponse } from './helpers/response';
 
 const app = express();
 
 preMiddleware(app);
+
+//default response
+app.get("/", (req: Request, res: Response) => SuccessMsgResponse(res, MESSAGES.DEFAULT));
 
 //documentation redirect
 app.get("/docs", (req, res) => {
