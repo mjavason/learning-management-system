@@ -3,8 +3,10 @@ dotenv.config({ path: './.env' });
 // export const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
 export const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
 export const DB_CONNECTION_STRING = process.env.MONGODB_URL || 'mongodb://localhost:27017';
-export const JWT_SECRET = process.env.JWT_SECRET || 'new';
-export const APP_NAME = process.env.APP_NAME || '';
+export const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access-token-secret';
+export const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'refresh-token-secret';
+export const JWT_SECRET = process.env.JWT_SECRET || 'jwt-secret';
+export const APP_NAME = process.env.APP_NAME || 'app';
 
 export const STATUS_CODES = {
     SUCCESS: '10000',
