@@ -10,8 +10,8 @@ function deserializeUser(req: Request, res: Response, next: NextFunction) {
 
     const decoded = verifyJwt(accessToken);
     if (!decoded) {
-      return BadRequestResponse(res, 'Invalid token')
-    }else{
+      return BadRequestResponse(res, 'Invalid token');
+    } else {
       res.locals.user = decoded;
     }
 

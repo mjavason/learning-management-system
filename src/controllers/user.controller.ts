@@ -43,7 +43,7 @@ class UserController {
     const { username, password } = req.body;
 
     // Find the user by username
-    const user = await userService.findOneWithPassword({ username });
+    const user = await userService.findOneReturnPassword({ username });
 
     if (!user) return NotFoundResponse(res, 'User not found');
 
@@ -56,6 +56,7 @@ class UserController {
       return InternalErrorResponse(res);
     }
 
+    // Passwords match, user is authenticated
     const { _id, role } = user;
     let accessToken = await signJwt({ _id, role, username }, ACCESS_TOKEN_SECRET, '1h');
     let refreshToken = await signJwt({_id, role, username}, REFRESH_TOKEN_SECRET, '24h');
@@ -64,7 +65,6 @@ class UserController {
       accessToken: accessToken,
       refreshToken: refreshToken
     };
-    // Passwords match, user is authenticated
 
     // Return a success response or the token, depending on your authentication method
     return SuccessResponse(res, data, MESSAGES.LOGGED_IN);

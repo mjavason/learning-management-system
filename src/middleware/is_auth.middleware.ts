@@ -10,7 +10,8 @@ import {
   SuccessResponse,
   AccessTokenErrorResponse,
   TokenRefreshResponse,
-} from '../helpers/response'; import { verifyJwt } from '../utils/jwt';
+} from '../helpers/response';
+import { verifyJwt } from '../utils/jwt';
 
 const isAuth = async (req: Request, res: Response, next: NextFunction) => {
   const accessToken = req.headers.authorization?.split(' ')[1] || '';

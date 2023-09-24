@@ -4,7 +4,6 @@ import helmet from 'helmet';
 import { CORS_ORIGIN } from '../constants';
 
 function PreMiddleware(app: express.Application) {
-
   // Middleware to enable CORS
   app.use(cors());
 

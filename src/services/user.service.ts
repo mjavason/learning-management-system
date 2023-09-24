@@ -29,7 +29,7 @@ class UserService {
     return UserModel.findOne({ ...searchData, deleted: false }).select('-__v');
   }
 
-  async findOneWithPassword(searchData: object) {
+  async findOneReturnPassword(searchData: object) {
     return UserModel.findOne({ ...searchData, deleted: false }).select('-__v +password');
   }
   softDelete = async (searchParams: object) => {
