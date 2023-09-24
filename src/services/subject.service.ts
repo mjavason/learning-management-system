@@ -6,21 +6,14 @@ class SubjectService {
     return await SubjectModel.create(subjectData);
   }
 
-  async getAll( page: number, limit: number ) {
+  async getAll(page: number = 1, limit: number = 10) {
     const skip = (page - 1) * limit;
 
-    const subjects = await SubjectModel.find({ deleted: false })
+    return await SubjectModel.find({ deleted: false })
       .limit(limit)
       .skip(skip)
       .sort({ createdAt: 'desc' })
       .select('-__v');
-
-    const totalSubjectsCount = await SubjectModel.countDocuments({ deleted: false });
-
-    return {
-      subjects,
-      totalSubjectsCount,
-    };
   }
 
   async update(searchDetails: object, update: object) {
@@ -37,7 +30,8 @@ class SubjectService {
     return SubjectModel.findOne({ ...searchData, deleted: false }).select('-__v');
   }
 
-  async softDelete(searchParams: object) {
+  //soft delete
+  async delete(searchParams: object) {
     return await SubjectModel.findOneAndUpdate(
       { ...searchParams, deleted: false },
       { deleted: true },

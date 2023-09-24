@@ -5,3 +5,4 @@
 
 export { demoController } from './demo.controller';
 export { userController } from './user.controller';
+export { subjectController } from './subject.controller';

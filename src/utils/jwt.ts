@@ -6,12 +6,12 @@ async function signJwt(payload: object, signature = JWT_SECRET, expiresIn?: stri
     expiresIn, // Optional expiry parameter
   };
 
-  return jwt.sign(payload, signature, options);
+  return await jwt.sign(payload, signature, options);
 }
 
-function verifyJwt(token: string, signature = JWT_SECRET) {
+async function verifyJwt(token: string, signature = JWT_SECRET) {
   try {
-    const decoded = jwt.verify(token, signature);
+    const decoded = await jwt.verify(token, signature);
     return decoded;
   } catch (e) {
     console.log(e);

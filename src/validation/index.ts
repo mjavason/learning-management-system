@@ -3,6 +3,6 @@
 // export = './whatever'
 // export { whatever } from './whatever';
 
-
-export {demoValidation } from "./demo.validation";
-export { authValidation } from "./auth.validation";
+export { demoValidation } from './demo.validation';
+export { authValidation } from './auth.validation';
+export { subjectValidation } from './subject.validation';

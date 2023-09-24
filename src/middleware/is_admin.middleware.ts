@@ -24,7 +24,7 @@ const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
 
     return AccessTokenErrorResponse(
       res,
-      "You're at the edge of creation buddy and you can't go any further. Recheck your route/api url",
+      "You're at the admin edge of creation buddy and you can't go any further. Recheck your route/api url",
     );
   }
   return next();
