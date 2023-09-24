@@ -57,8 +57,8 @@ class UserController {
     }
 
     const { _id, role } = user;
-    let accessToken = await signJwt({ _id, role, username }, ACCESS_TOKEN_SECRET);
-    let refreshToken = await signJwt({_id, role, username}, REFRESH_TOKEN_SECRET);
+    let accessToken = await signJwt({ _id, role, username }, ACCESS_TOKEN_SECRET, '1h');
+    let refreshToken = await signJwt({_id, role, username}, REFRESH_TOKEN_SECRET, '24h');
 
     let data = {
       accessToken: accessToken,
