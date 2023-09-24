@@ -1,40 +1,42 @@
-import { Schema, model, Types } from "mongoose";
-import IAssignmentSubmission from "../../interfaces/assignment_submission.interface";
-import { DATABASES } from "../../constants";
+import { Schema, model, Types } from 'mongoose';
+import IAssignmentSubmission from '../../interfaces/assignment_submission.interface';
+import { DATABASES } from '../../constants';
 
-const AssignmentSubmissionSchema = new Schema<IAssignmentSubmission>({
+const AssignmentSubmissionSchema = new Schema<IAssignmentSubmission>(
+  {
     assignment_id: {
-        type: Schema.Types.ObjectId,
-        ref: DATABASES.ASSIGNMENT, // Replace with the actual model name for assignments
-        required: true,
+      type: Schema.Types.ObjectId,
+      ref: DATABASES.ASSIGNMENT, // Replace with the actual model name for assignments
+      required: true,
     },
     link: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     user_id: {
-        type: Schema.Types.ObjectId,
-        ref: DATABASES.USER, // Replace with the actual model name for users
-        required: true,
-        autopopulate: true, // Enable autopopulate for this field
+      type: Schema.Types.ObjectId,
+      ref: DATABASES.USER, // Replace with the actual model name for users
+      required: true,
+      autopopulate: true, // Enable autopopulate for this field
     },
     deleted: {
-        type: Boolean,
-        required: true,
-        select: false,
-        default: false,
+      type: Boolean,
+      required: true,
+      select: false,
+      default: false,
     },
-},
-{
+  },
+  {
     timestamps: true,
-});
+  },
+);
 
 // Apply the mongoose-autopopulate plugin to the schema
 AssignmentSubmissionSchema.plugin(require('mongoose-autopopulate'));
 
 const AssignmentSubmissionModel = model<IAssignmentSubmission>(
-    DATABASES.ASSIGNMENT_SUBMISSION,
-    AssignmentSubmissionSchema
+  DATABASES.ASSIGNMENT_SUBMISSION,
+  AssignmentSubmissionSchema,
 );
 
 export default AssignmentSubmissionModel;
