@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start:local": "nodemon --exec ts-node ./build/server.js",
-    "start": "node --loader ts-node/esm ./build/src/server.js",
+    "build": "tsc -p .",
+    "start": "node ./build/server.js",
     "dev": "nodemon ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
