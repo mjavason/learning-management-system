@@ -1,33 +1,33 @@
-import { Schema, model, Types } from "mongoose";
-import IUser from "../../interfaces/user.interface";
-import { DATABASES } from "../../constants";
+import { Schema, model, Types } from 'mongoose';
+import IUser from '../../interfaces/user.interface';
+import { DATABASES } from '../../constants';
 
 const UserSchema = new Schema<IUser>(
-    {
-        firstname: String,
-        lastname: String,
-        username: {
-            type: String,
-            unique: true,
-        },
-        role: {
-            type: String,
-            enum: ['teacher', 'student', 'admin'],
-        },
-        password: {
-            type: String,
-            select: false,
-        },
-        deleted: {
-            type: Schema.Types.Boolean,
-            required: true,
-            select: false,
-            default: false,
-        },
+  {
+    firstname: String,
+    lastname: String,
+    username: {
+      type: String,
+      unique: true,
     },
-    {
-        timestamps: true,
-    }
+    role: {
+      type: String,
+      enum: ['teacher', 'student', 'admin'],
+    },
+    password: {
+      type: String,
+      select: false,
+    },
+    deleted: {
+      type: Schema.Types.Boolean,
+      required: true,
+      select: false,
+      default: false,
+    },
+  },
+  {
+    timestamps: true,
+  },
 );
 
 const UserModel = model<IUser>(DATABASES.USER, UserSchema);

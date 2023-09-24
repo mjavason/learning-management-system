@@ -1,11 +1,11 @@
-import { Types } from "mongoose";
+import { Types } from 'mongoose';
 
-export default interface IUser {
+export default interface IUser extends Document {
   _id?: string | Types.ObjectId;
   firstname: string;
   lastname: string;
   username: string;
-  password: string;
+  password?: string;
   role: 'teacher' | 'student' | 'admin';
-  deleted?:boolean;
+  deleted?: boolean;
 }
