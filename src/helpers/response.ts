@@ -6,6 +6,7 @@ enum StatusCode {
   FAILURE = '10001',
   RETRY = '10002',
   INVALID_ACCESS_TOKEN = '10003',
+  WE_MOVE = '10004',
 }
 
 enum ResponseStatus {
@@ -17,62 +18,69 @@ enum ResponseStatus {
   INTERNAL_ERROR = 500,
 }
 
-export function AuthFailureResponse(res: Response): Response {
+export function AuthFailureResponse(res: Response, message = MESSAGES.AUTH_FAILURE): Response {
   return res
-    .status(ResponseStatus.UNAUTHORIZED)
-    .send({ status_code: StatusCode.FAILURE, message: MESSAGES.AUTH_FAILURE, success: false });
+    .send({ success: false, status_code: StatusCode.FAILURE, message })
+    .status(ResponseStatus.UNAUTHORIZED);
 }
 
-export function NotFoundResponse(res: Response): Response {
+export function NotFoundResponse(res: Response, message = MESSAGES.NOT_FOUND): Response {
   return res
-    .status(ResponseStatus.NOT_FOUND)
-    .send({ status_code: StatusCode.FAILURE, message: MESSAGES.NOT_FOUND, success: false });
+    .send({ success: false, status_code: StatusCode.FAILURE, message })
+    .status(ResponseStatus.NOT_FOUND);
 }
 
 export function ForbiddenResponse(res: Response, message = MESSAGES.FORBIDDEN): Response {
   return res
-    .status(ResponseStatus.FORBIDDEN)
-    .send({ status_code: StatusCode.FAILURE, message, success: false });
+    .send({ success: false, status_code: StatusCode.FAILURE, message })
+    .status(ResponseStatus.FORBIDDEN);
+
 }
 
 export function BadRequestResponse(res: Response, message = MESSAGES.BAD_PARAMETERS): Response {
   return res
-    .status(ResponseStatus.BAD_REQUEST)
-    .send({ status_code: StatusCode.FAILURE, message, success: false });
+    .send({ success: false, status_code: StatusCode.FAILURE, message })
+    .status(ResponseStatus.BAD_REQUEST);
+}
+
+export function ForbiddenButWeMoveResponse<T>(res: Response, data: T, message = MESSAGES.BAD_PARAMETERS): Response {
+  return res
+    .json({ success: true, status_code: StatusCode.WE_MOVE, message, data })
+    .status(ResponseStatus.FORBIDDEN);
 }
 
 export function InternalErrorResponse(res: Response, message = MESSAGES.INTERNAL_ERROR): Response {
   return res
-    .status(ResponseStatus.INTERNAL_ERROR)
-    .send({ status_code: StatusCode.FAILURE, message, success: false });
+    .send({ success: false, status_code: StatusCode.FAILURE, message })
+    .status(ResponseStatus.INTERNAL_ERROR);
 }
 
 export function SuccessMsgResponse(res: Response, message = MESSAGES.FETCHED): Response {
   return res
-    .status(ResponseStatus.SUCCESS)
-    .send({ status_code: StatusCode.SUCCESS, message, success: true });
+    .send({ success: true, status_code: StatusCode.SUCCESS, message })
+    .status(ResponseStatus.SUCCESS);
 }
 
 export function FailureMsgResponse(res: Response, message = MESSAGES.ERROR): Response {
   return res
-    .status(ResponseStatus.SUCCESS)
-    .send({ status_code: StatusCode.FAILURE, message, success: false });
+    .send({ success: false, status_code: StatusCode.FAILURE, message })
+    .status(ResponseStatus.SUCCESS);
 }
 
 export function SuccessResponse<T>(res: Response, data: T, message = MESSAGES.SUCCESSFUL): Response {
   return res
-    .status(ResponseStatus.SUCCESS)
-    .json({ status_code: StatusCode.SUCCESS, message, data, success: true });
+    .json({ success: true, status_code: StatusCode.SUCCESS, message, data })
+    .status(ResponseStatus.SUCCESS);
 }
 
 export function AccessTokenErrorResponse(res: Response, message = MESSAGES.ACCESS_TOKEN_ERROR_RESPONSE): Response {
   return res
-    .status(ResponseStatus.UNAUTHORIZED)
-    .send({ status_code: StatusCode.INVALID_ACCESS_TOKEN, message, success: false });
+    .send({ success: false, status_code: StatusCode.INVALID_ACCESS_TOKEN, message })
+    .status(ResponseStatus.UNAUTHORIZED);
 }
 
 export function TokenRefreshResponse(res: Response, message = MESSAGES.FETCHED, accessToken: string, refreshToken: string): Response {
   return res
-    .status(ResponseStatus.SUCCESS)
-    .json({ status_code: StatusCode.SUCCESS, message, access_token: accessToken, refresh_token: refreshToken, success: true });
+    .json({ success: true, status_code: StatusCode.SUCCESS, message, access_token: accessToken, refresh_token: refreshToken })
+    .status(ResponseStatus.SUCCESS);
 }

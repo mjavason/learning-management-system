@@ -4,7 +4,7 @@ import logger from '../helpers/logger';
 
 export async function connectToDatabase() {
   try {
-    console.log(DB_CONNECTION_STRING, 'Trying to connect to');
+    console.log( 'Trying to connect to', DB_CONNECTION_STRING);
     await mongoose.connect(DB_CONNECTION_STRING, {
       autoIndex: false, // Don't build indexes
       maxPoolSize: 10, // Maintain up to 10 socket connections

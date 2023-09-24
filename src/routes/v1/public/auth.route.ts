@@ -1,11 +1,12 @@
 import { Router } from 'express'
 const router = Router();
-import { processRequestBody, processRequestParams } from 'zod-express-middleware';
-import { demoController } from '../../../controllers';
-import { demoValidation } from '../../../validation';
+
+import { processRequestBody, processRequestParams, processRequestQuery } from 'zod-express-middleware';
+import { userController } from '../../../controllers';
+import { authValidation } from '../../../validation';
 
 
-router.get('/', processRequestBody(demoValidation.showDemo.body), demoController.showDemo);
+router.post('/register', processRequestBody(authValidation.register.body), userController.register);
 
 
 export default router;

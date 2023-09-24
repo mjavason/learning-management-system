@@ -3,5 +3,5 @@
 // export = './whatever'
 // export { whatever } from './whatever';
 
-
-export { demoService } from './demo.service'
+export { demoService } from './demo.service';
+export { userService } from './user.service';

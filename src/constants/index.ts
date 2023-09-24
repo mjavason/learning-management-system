@@ -3,8 +3,10 @@ dotenv.config({ path: './.env' });
 // export const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
 export const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
 export const DB_CONNECTION_STRING = process.env.MONGODB_URL || 'mongodb://localhost:27017';
-export const JWT_SECRET = process.env.JWT_SECRET || 'new';
-export const APP_NAME = process.env.APP_NAME || '';
+export const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access-token-secret';
+export const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'refresh-token-secret';
+export const JWT_SECRET = process.env.JWT_SECRET || 'jwt-secret';
+export const APP_NAME = process.env.APP_NAME || 'app';
 
 export const STATUS_CODES = {
     SUCCESS: '10000',
@@ -22,7 +24,7 @@ export const MESSAGES = {
     SUCCESSFUL: "Successful",
     ASSIGNED: "Resource assignment completed successfully",
     NOT_FOUND: "Sorry, the requested resource was not found",
-    DEFAULT: "We've received your request and are processing it",
+    DEFAULT: "We've received your request and you've received ours",
     ALREADY_EXISTS: "This resource already exists",
     USER_ALREADY_EXISTS: "The user already exists",
     AUTH_DEFAULT: "Authentication is required for this action",
@@ -46,9 +48,8 @@ export const MESSAGES = {
     ACCESS_TOKEN_ERROR_RESPONSE: "Access token is invalid. Please log in again",
     TOKEN_REFRESH_RESPONSE: "Success! The access token was refreshed successfully",
     ROUTE_NOT_FOUND: "Sorry, the page you're looking for doesn't exist.",
-    WELCOME_V1:"Welcome to Version 1"
+    WELCOME_V1: "Welcome to Version 1"
 };
-
 
 export const LINKS = {
     AUTH_DOCUMENTATION: 'https://documenter.getpostman.com/view/24521226/2s93zFXKTU',
@@ -72,10 +73,9 @@ export const LINKS = {
 }
 
 export const DATABASES = {
-    USER: "User",
-    USER_LAND_RECORD: "user_land_record",
-    SITE_INSPECTION: "site_inspection",
-    SITE_INSPECTION_COMPUTED: "site_inspection_computed",
-    APPOINTMENT: "appointment",
-    APPOINTMENT_VISITOR:"appointment_visitor"
+    USER: "user",
+    ASSIGNMENT: "assignment",
+    ASSIGNMENT_SUBMISSION: "assignment_submission",
+    MATERIAL: "material",
+    SUBJECT: "subject",
 };
