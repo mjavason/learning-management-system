@@ -9,6 +9,7 @@ import {
 import { userController } from '../../../controllers';
 import { authValidation } from '../../../validation';
 
-router.post('/register', processRequestBody(authValidation.register.body), userController.create);
+router.post('/register', processRequestBody(authValidation.register.body), userController.register);
+router.post('/login', processRequestBody(authValidation.login.body), userController.login);
 
 export default router;

@@ -4,35 +4,35 @@ import IUser from '../interfaces/user.interface';
 
 class UserService {
   async create(body: object) {
-    let data = await UserModel.create(body);
-
-    delete data.password;
-    return data;
+    return await UserModel.create(body);
   }
 
   async getAll(pagination: number) {
-    return UserModel.find({ deleted: false })
+    return await UserModel.find({ deleted: false })
       .limit(10)
       .skip(pagination)
       .sort({ createdAt: 'desc' })
       .select('-__v');
   }
 
-  async update(searchDetails: object, update: object): Promise<IUser | null> {
+  async update(searchDetails: object, update: object) {
     return await UserModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
       new: true,
     });
   }
 
   async find(searchData: object) {
-    return UserModel.find({ ...searchData, deleted: false }).select('-__v');
+    return await UserModel.find({ ...searchData, deleted: false }).select('-__v');
   }
 
   async findOne(searchData: object) {
     return UserModel.findOne({ ...searchData, deleted: false }).select('-__v');
   }
 
-  softDelete = async (searchParams: Partial<IUser>) => {
+  async findOneWithPassword(searchData: object) {
+    return UserModel.findOne({ ...searchData, deleted: false }).select('-__v +password');
+  }
+  softDelete = async (searchParams: object) => {
     return await UserModel.findOneAndUpdate(
       { ...searchParams, deleted: false },
       { deleted: true },
