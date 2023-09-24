@@ -3,52 +3,56 @@ import UserModel from '../database/models/user.model';
 import IUser from '../interfaces/user.interface';
 
 class UserService {
+  async create(body: object) {
+    let data = await UserModel.create(body);
 
-    async createUser(body: object): Promise<IUser> {
-        return UserModel.create(body);
-    }
+    delete data.password;
+    return data;
+  }
 
-    async getAllUsers(pagination: number) {
-        return UserModel.find({ 'deleted': false })
-            .limit(10)
-            .skip(pagination)
-            .sort({ createdAt: 'desc' })
-            .select('-__v');
-    }
+  async getAll(pagination: number) {
+    return UserModel.find({ deleted: false })
+      .limit(10)
+      .skip(pagination)
+      .sort({ createdAt: 'desc' })
+      .select('-__v');
+  }
 
-    async updateUser(searchDetails: object, update: object): Promise<IUser | null> {
-        return await UserModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
-            new: true
-        });
-    }
+  async update(searchDetails: object, update: object): Promise<IUser | null> {
+    return await UserModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
+      new: true,
+    });
+  }
 
-    async findUsers(searchData: object) {
-        return UserModel.find({ ...searchData, deleted: false }).select('-__v');
-    }
+  async find(searchData: object) {
+    return UserModel.find({ ...searchData, deleted: false }).select('-__v');
+  }
 
-    async findOneUser(searchData: object) {
-        return UserModel.findOne({ ...searchData, deleted: false }).select('-__v');
-    }
+  async findOne(searchData: object) {
+    return UserModel.findOne({ ...searchData, deleted: false }).select('-__v');
+  }
 
+  softDelete = async (searchParams: Partial<IUser>) => {
+    return await UserModel.findOneAndUpdate(
+      { ...searchParams, deleted: false },
+      { deleted: true },
+      {
+        new: true,
+      },
+    );
+  };
 
-    softDeleteUser = async (searchParams: Partial<IUser>) => {
-        return await UserModel.findOneAndUpdate({ ...searchParams, deleted: false }, { deleted: true }, {
-            new: true
-        });
-    };
+  hardDelete = async (searchParams: Partial<IUser>) => {
+    return await UserModel.findOneAndDelete(searchParams);
+  };
 
-    hardDeleteUser = async (searchParams: Partial<IUser>) => {
-        return await UserModel.findOneAndDelete(searchParams);
-    };
+  checkForDuplicate = async (username: string) => {
+    // Check for duplicate email
+    const existingEmail = await UserModel.findOne({ username: username });
+    if (existingEmail) return existingEmail;
 
-    checkForDuplicate = async (username: string) => {
-        // Check for duplicate email
-        const existingEmail = await UserModel.findOne({ 'username': username });
-        if (existingEmail) return existingEmail;
-
-        return false; // No duplicates found
-    }
-
+    return false; // No duplicates found
+  };
 }
 
 export const userService = new UserService();
