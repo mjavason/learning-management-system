@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { subjectService } from '../services';
+import { assignmentService } from '../services';
 import {
   SuccessResponse,
   InternalErrorResponse,
@@ -7,9 +7,9 @@ import {
   NotFoundResponse,
 } from '../helpers/response';
 
-class SubjectController {
+class MaterialController {
   async create(req: Request, res: Response) {
-    const data = await subjectService.create(req.body);
+    const data = await assignmentService.create(req.body);
 
     if (!data) return InternalErrorResponse(res);
 
@@ -19,7 +19,7 @@ class SubjectController {
   async getAll(req: Request, res: Response) {
     let pagination = parseInt(req.params.pagination);
     if(!pagination) pagination = 1;
-    const data = await subjectService.getAll(pagination);
+    const data = await assignmentService.getAll(pagination);
 
     if (!data) return InternalErrorResponse(res);
     if (data.length === 0) return NotFoundResponse(res);
@@ -28,7 +28,7 @@ class SubjectController {
   }
 
   async find(req: Request, res: Response) {
-    const data = await subjectService.find(req.query);
+    const data = await assignmentService.find(req.query);
 
     if (!data) return InternalErrorResponse(res);
     if (data.length === 0) return NotFoundResponse(res);
@@ -38,7 +38,7 @@ class SubjectController {
 
   async update(req: Request, res: Response) {
     const { id } = req.params;
-    const data = await subjectService.update({ _id: id }, req.body);
+    const data = await assignmentService.update({ _id: id }, req.body);
 
     if (!data) return InternalErrorResponse(res);
 
@@ -47,7 +47,7 @@ class SubjectController {
 
   async delete(req: Request, res: Response) {
     const { id } = req.params;
-    const data = await subjectService.softDelete({ _id: id });
+    const data = await assignmentService.softDelete({ _id: id });
 
     if (!data) return InternalErrorResponse(res);
     return SuccessResponse(res, data);
@@ -56,11 +56,11 @@ class SubjectController {
   // Admins only
   async hardDelete(req: Request, res: Response) {
     const { id } = req.params;
-    const data = await subjectService.hardDelete({ _id: id });
+    const data = await assignmentService.hardDelete({ _id: id });
 
     if (!data) return InternalErrorResponse(res);
     return SuccessResponse(res, data);
   }
 }
 
-export const subjectController = new SubjectController();
+export const assignmentController = new MaterialController();

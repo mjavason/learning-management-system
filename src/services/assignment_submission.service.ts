@@ -1,44 +1,37 @@
-import AssignmentSubmissionModel from '../database/models/assignment_submission.model';
-import IAssignmentSubmission from '../interfaces/assignment_submission.interface';
+import Model from '../database/models/assignment_submission.model';
+import Interface from '../interfaces/assignment_submission.interface';
 
 class AssignmentSubmissionService {
-  async create(assignmentSubmissionData: IAssignmentSubmission) {
-    return await AssignmentSubmissionModel.create(assignmentSubmissionData);
+  async create(data: Interface) {
+    return await Model.create(data);
   }
 
-  async getAll( page: number, limit: number ) {
+  async getAll(page: number = 1, limit: number = 10) {
     const skip = (page - 1) * limit;
 
-    const assignmentSubmissions = await AssignmentSubmissionModel.find({ deleted: false })
+    return await Model.find({ deleted: false })
       .limit(limit)
       .skip(skip)
       .sort({ createdAt: 'desc' })
       .select('-__v');
-
-    const totalAssignmentSubmissionsCount = await AssignmentSubmissionModel.countDocuments({ deleted: false });
-
-    return {
-      assignmentSubmissions,
-      totalAssignmentSubmissionsCount,
-    };
   }
 
   async update(searchDetails: object, update: object) {
-    return await AssignmentSubmissionModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
+    return await Model.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
       new: true,
     });
   }
 
   async find(searchData: object) {
-    return await AssignmentSubmissionModel.find({ ...searchData, deleted: false }).select('-__v');
+    return await Model.find({ ...searchData, deleted: false }).select('-__v');
   }
 
   async findOne(searchData: object) {
-    return AssignmentSubmissionModel.findOne({ ...searchData, deleted: false }).select('-__v');
+    return Model.findOne({ ...searchData, deleted: false }).select('-__v');
   }
 
   async softDelete(searchParams: object) {
-    return await AssignmentSubmissionModel.findOneAndUpdate(
+    return await Model.findOneAndUpdate(
       { ...searchParams, deleted: false },
       { deleted: true },
       {
@@ -48,7 +41,7 @@ class AssignmentSubmissionService {
   }
 
   async hardDelete(searchParams: object) {
-    return await AssignmentSubmissionModel.findOneAndDelete(searchParams);
+    return await Model.findOneAndDelete(searchParams);
   }
 }
 

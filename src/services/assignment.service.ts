@@ -1,44 +1,37 @@
-import AssignmentModel from '../database/models/assignment.model';
-import IAssignment from '../interfaces/assignment.interface';
+import Model from '../database/models/assignment.model';
+import Interface from '../interfaces/assignment.interface';
 
 class AssignmentService {
-  async create(assignmentData: IAssignment) {
-    return await AssignmentModel.create(assignmentData);
+  async create(data: Interface) {
+    return await Model.create(data);
   }
 
-  async getAll( page: number, limit: number ) {
+  async getAll(page: number = 1, limit: number = 10) {
     const skip = (page - 1) * limit;
 
-    const assignments = await AssignmentModel.find({ deleted: false })
+    return await Model.find({ deleted: false })
       .limit(limit)
       .skip(skip)
       .sort({ createdAt: 'desc' })
       .select('-__v');
-
-    const totalAssignmentsCount = await AssignmentModel.countDocuments({ deleted: false });
-
-    return {
-      assignments,
-      totalAssignmentsCount,
-    };
   }
 
   async update(searchDetails: object, update: object) {
-    return await AssignmentModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
+    return await Model.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
       new: true,
     });
   }
 
   async find(searchData: object) {
-    return await AssignmentModel.find({ ...searchData, deleted: false }).select('-__v');
+    return await Model.find({ ...searchData, deleted: false }).select('-__v');
   }
 
   async findOne(searchData: object) {
-    return AssignmentModel.findOne({ ...searchData, deleted: false }).select('-__v');
+    return Model.findOne({ ...searchData, deleted: false }).select('-__v');
   }
 
   async softDelete(searchParams: object) {
-    return await AssignmentModel.findOneAndUpdate(
+    return await Model.findOneAndUpdate(
       { ...searchParams, deleted: false },
       { deleted: true },
       {
@@ -48,7 +41,7 @@ class AssignmentService {
   }
 
   async hardDelete(searchParams: object) {
-    return await AssignmentModel.findOneAndDelete(searchParams);
+    return await Model.findOneAndDelete(searchParams);
   }
 }
 
