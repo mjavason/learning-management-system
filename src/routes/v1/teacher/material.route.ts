@@ -12,12 +12,12 @@ import { MESSAGES } from '../../../constants';
 
 // router.get('/', (req: Request, res: Response) => SuccessMsgResponse(res, MESSAGES.DEFAULT));
 router.post(
-  '/create',
+  '/',
   processRequestBody(materialValidation.create.body),
   materialController.create,
 );
-router.get('/:pagination', materialController.getAll);
 router.get('/search', processRequestQuery(materialValidation.find.query), materialController.find);
+router.get('/:pagination', materialController.getAll);
 router.patch(
   '/:id',
   [
@@ -28,7 +28,7 @@ router.patch(
 );
 router.delete(
   '/:id',
-  [processRequestBody(materialValidation.getById.params)],
+  [processRequestParams(materialValidation.getById.params)],
   materialController.delete,
 );
 

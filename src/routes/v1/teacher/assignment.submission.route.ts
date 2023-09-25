@@ -11,17 +11,17 @@ import { SuccessMsgResponse } from '../../../helpers/response';
 import { MESSAGES } from '../../../constants';
 
 // router.get('/', (req: Request, res: Response) => SuccessMsgResponse(res, MESSAGES.DEFAULT));
-router.post(
-  '/create',
-  processRequestBody(assignmentSubmissionValidation.create.body),
-  assignmentSubmissionController.create,
-);
-router.get('/:pagination', assignmentSubmissionController.getAll);
+// router.post(
+//   '/create',
+//   processRequestBody(assignmentSubmissionValidation.create.body),
+//   assignmentSubmissionController.create,
+// );
 router.get(
   '/search',
   processRequestQuery(assignmentSubmissionValidation.find.query),
   assignmentSubmissionController.find,
 );
+router.get('/:pagination', assignmentSubmissionController.getAll);
 router.patch(
   '/:id',
   [
@@ -32,7 +32,7 @@ router.patch(
 );
 router.delete(
   '/:id',
-  [processRequestBody(assignmentSubmissionValidation.getById.params)],
+  [processRequestParams(assignmentSubmissionValidation.getById.params)],
   assignmentSubmissionController.delete,
 );
 
