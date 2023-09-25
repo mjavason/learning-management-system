@@ -20,9 +20,12 @@ class MaterialValidation {
       }),
     }),
     body: z.object({
-      subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid ObjectId format',
-      }).optional(),
+      subject_id: z
+        .string()
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
+        })
+        .optional(),
       link: z.string().min(1).max(255).optional(),
       deleted: z.boolean().optional(),
     }),
@@ -31,12 +34,18 @@ class MaterialValidation {
   // Validation schema for finding materials
   find = {
     query: z.object({
-      _id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid ObjectId format',
-      }).optional(),
-      subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid ObjectId format',
-      }).optional(),
+      _id: z
+        .string()
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
+        })
+        .optional(),
+      subject_id: z
+        .string()
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
+        })
+        .optional(),
       link: z.string().min(1).max(255).optional(),
       deleted: z.string().optional(),
     }),
