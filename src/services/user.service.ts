@@ -18,7 +18,7 @@ class UserService {
   async update(searchDetails: object, update: object) {
     return await UserModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
       new: true,
-    });
+    }).select('-__v');
   }
 
   async find(searchData: object) {
@@ -40,16 +40,16 @@ class UserService {
       {
         new: true,
       },
-    );
+    ).select('-__v');
   }
 
   async hardDelete(searchParams: Partial<IUser>) {
-    return await UserModel.findOneAndDelete(searchParams);
+    return await UserModel.findOneAndDelete(searchParams).select('-__v');
   }
 
   async checkForDuplicate(username: string) {
     // Check for duplicate email
-    const existingEmail = await UserModel.findOne({ username: username });
+    const existingEmail = await UserModel.findOne({ username: username }).select('-__v');
     if (existingEmail) return existingEmail;
 
     return false; // No duplicates found

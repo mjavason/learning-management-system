@@ -16,6 +16,8 @@ const MaterialSchema = new Schema<IMaterial>(
     },
     deleted: {
       type: Boolean,
+      required: true,
+      select: false,
       default: false,
     },
   },

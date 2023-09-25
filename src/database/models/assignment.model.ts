@@ -16,6 +16,8 @@ const AssignmentSchema = new Schema<IAssignment>(
     },
     deleted: {
       type: Boolean,
+      required: true,
+      select: false,
       default: false,
     },
   },

@@ -7,13 +7,11 @@ import {
 } from 'zod-express-middleware';
 import { subjectController } from '../../../controllers';
 import { subjectValidation } from '../../../validation';
-import { SuccessMsgResponse } from '../../../helpers/response';
-import { MESSAGES } from '../../../constants';
 
 // router.get('/', (req: Request, res: Response) => SuccessMsgResponse(res, MESSAGES.DEFAULT));
-router.post('/create', processRequestBody(subjectValidation.create.body), subjectController.create);
-router.get('/:pagination', subjectController.getAll);
+router.post('/', processRequestBody(subjectValidation.create.body), subjectController.create);
 router.get('/search', processRequestQuery(subjectValidation.find.query), subjectController.find);
+router.get('/:pagination', subjectController.getAll);
 router.patch(
   '/:id',
   [
@@ -25,4 +23,3 @@ router.patch(
 router.delete('/:id', [processRequestBody(subjectValidation.getById.params)]);
 
 export default router;
-

@@ -19,7 +19,7 @@ class SubjectService {
   async update(searchDetails: object, update: object) {
     return await Model.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
       new: true,
-    });
+    }).select('-__v');
   }
 
   async find(searchData: object) {
@@ -37,11 +37,11 @@ class SubjectService {
       {
         new: true,
       },
-    );
+    ).select('-__v');
   }
 
   async hardDelete(searchParams: object) {
-    return await Model.findOneAndDelete(searchParams);
+    return await Model.findOneAndDelete(searchParams).select('-__v');
   }
 }
 
