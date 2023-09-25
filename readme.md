@@ -25,14 +25,14 @@ To run the Learning Management System locally, follow these steps:
 3. Create a `.env` file in the project's root folder and fill it with the appropriate URI values.
    - Example `.env` file:
      ```env
-ACCESS_TOKEN_SECRET=xxxx
-APP_NAME = TemplateApp
-JWT_SECRET = user
-MONGODB_URL = xxxx
-REFRESH_TOKEN_SECRET=xxxx
-USERNAME =  user@mail.com
+     APP_NAME=TemplateApp
+     JWT_SECRET=user
+     MONGO_DB_URL=db_uri
+     USERNAME=user@mail.com
+     ACCESS_TOKEN_SECRET=access_token
+     REFRESH_TOKEN_SECRET=refresh_token
      ```
-   - Make sure to replace `your_database_uri_here`, `your_access_token_secret_here`, and `your_refresh_token_secret_here` with your actual values.
+   - Make sure to replace `database_uri`, `access_token`, and `refresh_token` with your actual values.
 4. Ensure you have Node.js installed on your computer.
 5. Build the TypeScript code using `npm run build`.
 6. Start the server locally using one of the following commands:
@@ -90,4 +90,4 @@ If you find any part of the app you can improve, just fork the project, work on 
 
 ## Acknowledgments
 
-I want to extend my heartfelt gratitude to my colleagues, mentors, and friends who assisted me throughout the project. Whether it was coding, design, testing, data entry, or offering advice, your support was truly appreciated. Thank you all for your contributions; they made a significant impact on the project's success.
+I had the assistance of colleagues, mentors and friends whilst building the project; in the way of coding, design, testing, data entry and advice. Thank you all.
