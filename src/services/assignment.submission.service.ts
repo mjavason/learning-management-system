@@ -1,5 +1,5 @@
-import Model from '../database/models/assignment_submission.model';
-import Interface from '../interfaces/assignment_submission.interface';
+import Model from '../database/models/assignment.submission.model';
+import Interface from '../interfaces/assignment.submission.interface';
 
 class AssignmentSubmissionService {
   async create(data: Interface) {

@@ -12,7 +12,7 @@ import { MESSAGES } from '../../../constants';
 
 // router.get('/', (req: Request, res: Response) => SuccessMsgResponse(res, MESSAGES.DEFAULT));
 router.post(
-  '/submit',
+  '/',
   processRequestBody(assignmentSubmissionValidation.create.body),
   assignmentSubmissionController.create,
 );

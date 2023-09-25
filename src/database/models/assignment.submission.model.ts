@@ -1,5 +1,5 @@
 import { Schema, model, Types } from 'mongoose';
-import IAssignmentSubmission from '../../interfaces/assignment_submission.interface';
+import IAssignmentSubmission from '../../interfaces/assignment.submission.interface';
 import { DATABASES } from '../../constants';
 
 const AssignmentSubmissionSchema = new Schema<IAssignmentSubmission>(
