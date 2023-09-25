@@ -20,6 +20,10 @@ router.patch(
   ],
   subjectController.update,
 );
-router.delete('/:id', [processRequestBody(subjectValidation.getById.params)]);
+router.delete(
+  '/:id',
+  [processRequestParams(subjectValidation.getById.params)],
+  subjectController.delete,
+);
 
 export default router;

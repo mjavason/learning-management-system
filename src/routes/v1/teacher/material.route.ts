@@ -26,6 +26,10 @@ router.patch(
   ],
   materialController.update,
 );
-router.delete('/:id', [processRequestBody(materialValidation.getById.params)]);
+router.delete(
+  '/:id',
+  [processRequestBody(materialValidation.getById.params)],
+  materialController.delete,
+);
 
 export default router;

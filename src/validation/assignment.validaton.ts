@@ -20,9 +20,12 @@ class AssignmentValidation {
       }),
     }),
     body: z.object({
-      subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Subject ObjectId format in subject_id',
-      }).optional(),
+      subject_id: z
+        .string()
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid Subject ObjectId format in subject_id',
+        })
+        .optional(),
       description: z.string().min(1).max(255).optional(),
       deleted: z.boolean().optional(),
     }),
@@ -31,12 +34,18 @@ class AssignmentValidation {
   // Validation schema for finding assignments
   find = {
     query: z.object({
-      _id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid ObjectId format in _id',
-      }).optional(),
-      subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Subject ObjectId format in subject_id',
-      }).optional(),
+      _id: z
+        .string()
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format in _id',
+        })
+        .optional(),
+      subject_id: z
+        .string()
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid Subject ObjectId format in subject_id',
+        })
+        .optional(),
       description: z.string().min(1).max(255).optional(),
       deleted: z.string().optional(),
     }),
@@ -46,7 +55,7 @@ class AssignmentValidation {
   getById = {
     params: z.object({
       id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Assignment ObjectId format in id',
+        message: 'Invalid ObjectId format',
       }),
     }),
   };

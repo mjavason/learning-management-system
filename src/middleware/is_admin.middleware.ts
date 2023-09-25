@@ -19,6 +19,7 @@ const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
 
   const loggedUser = user;
   if (loggedUser && loggedUser.role !== 'admin') {
+    console.log('Invalid login details, not admin');
     return AuthFailureResponse(res);
   }
   return next();

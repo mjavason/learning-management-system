@@ -6,6 +6,7 @@ import {
   SuccessMsgResponse,
   NotFoundResponse,
 } from '../helpers/response';
+import { MESSAGES } from '../constants';
 
 class MaterialController {
   async create(req: Request, res: Response) {
@@ -18,7 +19,7 @@ class MaterialController {
 
   async getAll(req: Request, res: Response) {
     let pagination = parseInt(req.params.pagination);
-    if(!pagination) pagination = 1;
+    if (!pagination) pagination = 1;
     const data = await assignmentService.getAll(pagination);
 
     if (!data) return InternalErrorResponse(res);
@@ -40,17 +41,18 @@ class MaterialController {
     const { id } = req.params;
     const data = await assignmentService.update({ _id: id }, req.body);
 
-    if (!data) return InternalErrorResponse(res);
+    if (!data) return NotFoundResponse(res);
 
-    return SuccessResponse(res, data);
+    return SuccessResponse(res, data, MESSAGES.UPDATED);
   }
 
   async delete(req: Request, res: Response) {
     const { id } = req.params;
     const data = await assignmentService.softDelete({ _id: id });
 
-    if (!data) return InternalErrorResponse(res);
-    return SuccessResponse(res, data);
+    if (!data) return NotFoundResponse(res);
+    
+    return SuccessResponse(res, data, MESSAGES.DELETED);
   }
 
   // Admins only
@@ -58,8 +60,9 @@ class MaterialController {
     const { id } = req.params;
     const data = await assignmentService.hardDelete({ _id: id });
 
-    if (!data) return InternalErrorResponse(res);
-    return SuccessResponse(res, data);
+    if (!data) return NotFoundResponse(res);
+
+    return SuccessResponse(res, data, MESSAGES.DELETED);
   }
 }
 

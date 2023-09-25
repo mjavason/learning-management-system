@@ -17,6 +17,7 @@ import { MESSAGES, STATUS_CODES } from '../constants';
 const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
   const user = res.locals.user;
   if (user && user.role !== 'teacher') {
+    console.log('Invalid login details, not teacher');
     return AuthFailureResponse(res);
   }
   return next();

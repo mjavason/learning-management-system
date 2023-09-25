@@ -30,6 +30,10 @@ router.patch(
   ],
   assignmentController.update,
 );
-router.delete('/:id', [processRequestBody(assignmentValidation.getById.params)]);
+router.delete(
+  '/:id',
+  [processRequestBody(assignmentValidation.getById.params)],
+  assignmentController.delete,
+);
 
 export default router;

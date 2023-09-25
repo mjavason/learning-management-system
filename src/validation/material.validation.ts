@@ -6,7 +6,7 @@ class MaterialValidation {
   create = {
     body: z.object({
       subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Subject ObjectId format in subject_id',
+        message: 'Invalid ObjectId format',
       }),
       link: z.string().min(1).max(255),
     }),
@@ -16,12 +16,12 @@ class MaterialValidation {
   update = {
     params: z.object({
       id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Material ObjectId format in id',
+        message: 'Invalid ObjectId format',
       }),
     }),
     body: z.object({
       subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Subject ObjectId format in subject_id',
+        message: 'Invalid ObjectId format',
       }).optional(),
       link: z.string().min(1).max(255).optional(),
       deleted: z.boolean().optional(),
@@ -32,21 +32,21 @@ class MaterialValidation {
   find = {
     query: z.object({
       _id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid ObjectId format in _id',
+        message: 'Invalid ObjectId format',
       }).optional(),
       subject_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Subject ObjectId format in subject_id',
+        message: 'Invalid ObjectId format',
       }).optional(),
       link: z.string().min(1).max(255).optional(),
       deleted: z.string().optional(),
     }),
   };
 
-  // Validation schema for reading a material by ID
+  // Validation schema for reading a subject by ID
   getById = {
     params: z.object({
       id: z.string().refine((value) => Types.ObjectId.isValid(value), {
-        message: 'Invalid Material ObjectId format in id',
+        message: 'Invalid ObjectId format',
       }),
     }),
   };

@@ -5,12 +5,12 @@ class AssignmentSubmissionValidation {
   // Validation schema for creating a new assignment submission
   create = {
     body: z.object({
-      assignment_id: z.string().refine(this.isValidObjectIdString, {
-        message: 'Invalid Assignment ObjectId format in assignment_id',
+      assignment_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
+        message: 'Invalid ObjectId format',
       }),
       link: z.string().min(1).max(255),
-      user_id: z.string().refine(this.isValidObjectIdString, {
-        message: 'Invalid User ObjectId format in user_id',
+      user_id: z.string().refine((value) => Types.ObjectId.isValid(value), {
+        message: 'Invalid ObjectId format',
       }),
     }),
   };
@@ -18,22 +18,22 @@ class AssignmentSubmissionValidation {
   // Validation schema for updating an assignment submission
   update = {
     params: z.object({
-      id: z.string().refine(this.isValidObjectIdString, {
-        message: 'Invalid AssignmentSubmission ObjectId format in id',
+      id: z.string().refine((value) => Types.ObjectId.isValid(value), {
+        message: 'Invalid ObjectId format',
       }),
     }),
     body: z.object({
       assignment_id: z
         .string()
-        .refine(this.isValidObjectIdString, {
-          message: 'Invalid Assignment ObjectId format in assignment_id',
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
         })
         .optional(),
       link: z.string().min(1).max(255).optional(),
       user_id: z
         .string()
-        .refine(this.isValidObjectIdString, {
-          message: 'Invalid User ObjectId format in user_id',
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
         })
         .optional(),
       deleted: z.boolean().optional(),
@@ -45,21 +45,21 @@ class AssignmentSubmissionValidation {
     query: z.object({
       _id: z
         .string()
-        .refine(this.isValidObjectIdString, {
-          message: 'Invalid ObjectId format in _id',
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
         })
         .optional(),
       assignment_id: z
         .string()
-        .refine(this.isValidObjectIdString, {
-          message: 'Invalid Assignment ObjectId format in assignment_id',
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
         })
         .optional(),
       link: z.string().min(1).max(255).optional(),
       user_id: z
         .string()
-        .refine(this.isValidObjectIdString, {
-          message: 'Invalid User ObjectId format in user_id',
+        .refine((value) => Types.ObjectId.isValid(value), {
+          message: 'Invalid ObjectId format',
         })
         .optional(),
       deleted: z.string().optional(),
@@ -69,16 +69,11 @@ class AssignmentSubmissionValidation {
   // Validation schema for reading an assignment submission by ID
   getById = {
     params: z.object({
-      id: z.string().refine(this.isValidObjectIdString, {
-        message: 'Invalid AssignmentSubmission ObjectId format in id',
+      id: z.string().refine((value) => Types.ObjectId.isValid(value), {
+        message: 'Invalid ObjectId format',
       }),
     }),
   };
-
-  // Helper method to validate ObjectId strings
-  isValidObjectIdString(value: string) {
-    return typeof value === 'string' && Types.ObjectId.isValid(value);
-  }
 }
 
 export const assignmentSubmissionValidation = new AssignmentSubmissionValidation();
