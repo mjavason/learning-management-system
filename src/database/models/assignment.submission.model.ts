@@ -6,6 +6,7 @@ const AssignmentSubmissionSchema = new Schema<IAssignmentSubmission>(
   {
     assignment_id: {
       type: Schema.Types.ObjectId,
+      autopopulate: true, // Enable autopopulate for this field
       ref: DATABASES.ASSIGNMENT, // Replace with the actual model name for assignments
       required: true,
     },
