@@ -25,9 +25,12 @@ To run the Learning Management System locally, follow these steps:
 3. Create a `.env` file in the project's root folder and fill it with the appropriate URI values.
    - Example `.env` file:
      ```env
-     DATABASE_URI=your_database_uri_here
-     ACCESS_TOKEN_SECRET=your_access_token_secret_here
-     REFRESH_TOKEN_SECRET=your_refresh_token_secret_here
+ACCESS_TOKEN_SECRET=xxxx
+APP_NAME = TemplateApp
+JWT_SECRET = user
+MONGODB_URL = xxxx
+REFRESH_TOKEN_SECRET=xxxx
+USERNAME =  user@mail.com
      ```
    - Make sure to replace `your_database_uri_here`, `your_access_token_secret_here`, and `your_refresh_token_secret_here` with your actual values.
 4. Ensure you have Node.js installed on your computer.
@@ -87,4 +90,4 @@ If you find any part of the app you can improve, just fork the project, work on 
 
 ## Acknowledgments
 
-I had the assistance of colleagues, mentors and friends whilst building the project; in the way of coding, design, testing, data entry and advice. Thank you all.
+I want to extend my heartfelt gratitude to my colleagues, mentors, and friends who assisted me throughout the project. Whether it was coding, design, testing, data entry, or offering advice, your support was truly appreciated. Thank you all for your contributions; they made a significant impact on the project's success.
