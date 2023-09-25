@@ -14,7 +14,7 @@ async function verifyJwt(token: string, signature = JWT_SECRET) {
     const decoded = await jwt.verify(token, signature);
     return decoded;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     return false;
   }
 }
