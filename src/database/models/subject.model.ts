@@ -16,6 +16,8 @@ const SubjectSchema = new Schema<ISubject>(
     },
     deleted: {
       type: Boolean,
+      required: true,
+      select: false,
       default: false,
     },
   },

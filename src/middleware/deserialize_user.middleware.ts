@@ -2,13 +2,14 @@
 import { Response, Request, NextFunction } from 'express';
 import { verifyJwt } from '../utils/jwt';
 import { BadRequestResponse } from '../helpers/response';
+import { ACCESS_TOKEN_SECRET } from '../constants';
 
-function deserializeUser(req: Request, res: Response, next: NextFunction) {
+async function deserializeUser(req: Request, res: Response, next: NextFunction) {
   try {
     const accessToken = req.headers.authorization?.split(' ')[1] || '';
     if (!accessToken) return next();
 
-    const decoded = verifyJwt(accessToken);
+    const decoded = await verifyJwt(accessToken, ACCESS_TOKEN_SECRET);
     if (!decoded) {
       return BadRequestResponse(res, 'Invalid token');
     } else {

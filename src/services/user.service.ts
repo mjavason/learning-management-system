@@ -18,7 +18,7 @@ class UserService {
   async update(searchDetails: object, update: object) {
     return await UserModel.findOneAndUpdate({ ...searchDetails, deleted: false }, update, {
       new: true,
-    });
+    }).select('-__v');
   }
 
   async find(searchData: object) {
@@ -32,27 +32,28 @@ class UserService {
   async findOneReturnPassword(searchData: object) {
     return UserModel.findOne({ ...searchData, deleted: false }).select('-__v +password');
   }
-  softDelete = async (searchParams: object) => {
+
+  async softDelete(searchParams: object) {
     return await UserModel.findOneAndUpdate(
       { ...searchParams, deleted: false },
       { deleted: true },
       {
         new: true,
       },
-    );
-  };
+    ).select('-__v');
+  }
 
-  hardDelete = async (searchParams: Partial<IUser>) => {
-    return await UserModel.findOneAndDelete(searchParams);
-  };
+  async hardDelete(searchParams: Partial<IUser>) {
+    return await UserModel.findOneAndDelete(searchParams).select('-__v');
+  }
 
-  checkForDuplicate = async (username: string) => {
+  async checkForDuplicate(username: string) {
     // Check for duplicate email
-    const existingEmail = await UserModel.findOne({ username: username });
+    const existingEmail = await UserModel.findOne({ username: username }).select('-__v');
     if (existingEmail) return existingEmail;
 
     return false; // No duplicates found
-  };
+  }
 }
 
 export const userService = new UserService();

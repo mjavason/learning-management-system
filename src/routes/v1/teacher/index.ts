@@ -1,11 +1,9 @@
 import { Router } from 'express';
-import demoRoute from './demo.route';
+import subjectRoute from './subject.route';
 import isTeacher from '../../../middleware/is_teacher.middleware';
 const router = Router();
 
-
 router.use(isTeacher);
-router.use('/demoprotected', demoRoute);
-
+router.use('/subject', subjectRoute);
 
 export default router;
