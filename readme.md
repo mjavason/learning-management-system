@@ -71,7 +71,7 @@ Once registered, you can log in by making a POST request to `/api/v1/auth/login`
 
 ## Documentation
 
-[LMS/Postman](https://documenter.getpostman.com/view/29278179/2s9YJW55kR)
+[LMS/Postman](https://documenter.getpostman.com/view/29278179/2s9YJW7SRe)
 
 ## Design Choices
 
