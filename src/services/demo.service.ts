@@ -1,6 +1,6 @@
 import IDemo from '../interfaces/demo.interface'; // Make sure to import the appropriate model
 
-class DemoService {
+class Service {
 
     /**
  * Confirm user referral
@@ -14,4 +14,4 @@ class DemoService {
 
 }
 
-export const demoService = new DemoService();
+export const demoService = new Service();

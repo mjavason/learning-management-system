@@ -8,7 +8,7 @@ import {
 } from '../helpers/response';
 import { MESSAGES } from '../constants';
 
-class AssignmentSubmissionController {
+class Controller {
   async create(req: Request, res: Response) {
     const data = await assignmentSubmissionService.create(req.body);
 
@@ -66,4 +66,4 @@ class AssignmentSubmissionController {
   }
 }
 
-export const assignmentSubmissionController = new AssignmentSubmissionController();
+export const assignmentSubmissionController = new Controller();

@@ -1,7 +1,7 @@
 import Model from '../database/models/subject.model';
 import Interface from '../interfaces/subject.interface';
 
-class SubjectService {
+class Service {
   async create(data: Interface) {
     return await Model.create(data);
   }
@@ -45,4 +45,4 @@ class SubjectService {
   }
 }
 
-export const subjectService = new SubjectService();
+export const subjectService = new Service();

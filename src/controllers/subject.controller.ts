@@ -8,7 +8,7 @@ import {
 } from '../helpers/response';
 import { MESSAGES } from '../constants';
 
-class SubjectController {
+class Controller {
   async create(req: Request, res: Response) {
     const data = await subjectService.create(req.body);
 
@@ -66,4 +66,4 @@ class SubjectController {
   }
 }
 
-export const subjectController = new SubjectController();
+export const subjectController = new Controller();

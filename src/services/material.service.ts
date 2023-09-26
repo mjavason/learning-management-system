@@ -1,7 +1,7 @@
 import Model from '../database/models/material.model';
 import Interface from '../interfaces/material.interface';
 
-class MaterialService {
+class Service {
   async create(data: Interface) {
     return await Model.create(data);
   }
@@ -45,4 +45,4 @@ class MaterialService {
   }
 }
 
-export const materialService = new MaterialService();
+export const materialService = new Service();

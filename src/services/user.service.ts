@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 import UserModel from '../database/models/user.model';
 import IUser from '../interfaces/user.interface';
 
-class UserService {
+class Service {
   async create(body: object) {
     return await UserModel.create(body);
   }
@@ -56,4 +56,4 @@ class UserService {
   }
 }
 
-export const userService = new UserService();
+export const userService = new Service();

@@ -1,6 +1,6 @@
 import { string, object } from 'zod';
 
-class DemoValidation {
+class Validation {
   showDemo = {
     body: object({
       message: string({ required_error: 'message is required' }),
@@ -9,4 +9,4 @@ class DemoValidation {
   };
 }
 
-export const demoValidation = new DemoValidation();
+export const demoValidation = new Validation();

@@ -8,7 +8,7 @@ import {
 } from '../helpers/response';
 import { MESSAGES } from '../constants';
 
-class MaterialController {
+class Controller {
   async create(req: Request, res: Response) {
     const data = await materialService.create(req.body);
 
@@ -65,4 +65,4 @@ class MaterialController {
   }
 }
 
-export const materialController = new MaterialController();
+export const materialController = new Controller();

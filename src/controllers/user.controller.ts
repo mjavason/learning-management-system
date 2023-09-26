@@ -17,7 +17,7 @@ import logger from '../helpers/logger';
 import { signJwt } from '../utils/jwt';
 import { ACCESS_TOKEN_SECRET, MESSAGES, REFRESH_TOKEN_SECRET } from '../constants';
 
-class UserController {
+class Controller {
   async register(req: Request, res: Response) {
     let existing_user = await userService.checkForDuplicate(req.body.username);
 
@@ -71,4 +71,4 @@ class UserController {
   }
 }
 
-export const userController = new UserController();
+export const userController = new Controller();

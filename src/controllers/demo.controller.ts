@@ -14,11 +14,11 @@ import {
 } from '../helpers/response';
 import { demoService } from '../services'
 
-class DemoController {
+class Controller {
     async showDemo(req: Request, res: Response) {
         const data = await demoService.showDemo(req.body);
         return SuccessResponse(res, data);
     }
 }
 
-export const demoController = new DemoController();
+export const demoController = new Controller();

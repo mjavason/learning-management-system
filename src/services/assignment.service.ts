@@ -1,7 +1,7 @@
 import Model from '../database/models/assignment.model';
 import Interface from '../interfaces/assignment.interface';
 
-class AssignmentService {
+class Service {
   async create(data: Interface) {
     return await Model.create(data);
   }
@@ -45,4 +45,4 @@ class AssignmentService {
   }
 }
 
-export const assignmentService = new AssignmentService();
+export const assignmentService = new Service();

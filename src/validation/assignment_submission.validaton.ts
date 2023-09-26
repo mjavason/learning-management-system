@@ -1,7 +1,7 @@
 import z from 'zod';
 import { Types } from 'mongoose';
 
-class AssignmentSubmissionValidation {
+class Validation {
   // Validation schema for creating a new assignment submission
   create = {
     body: z.object({
@@ -76,4 +76,4 @@ class AssignmentSubmissionValidation {
   };
 }
 
-export const assignmentSubmissionValidation = new AssignmentSubmissionValidation();
+export const assignmentSubmissionValidation = new Validation();
